@@ -1,0 +1,107 @@
+{
+  "rules": [
+    {
+      "collection": "users",
+      "permissions": {
+        "read": "isOwner() || isAdmin()",
+        "create": "isAuthenticated()",
+        "update": "isOwner() || isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "telegramId": "number | string",
+        "balance": "number",
+        "role": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    {
+      "collection": "transactions",
+      "permissions": {
+        "read": "isOwner() || isAdmin()",
+        "create": "isOwner()",
+        "update": "isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "userId": "string",
+        "type": "string (deposit, withdrawal)",
+        "amount": "number",
+        "currency": "string",
+        "status": "string (pending, completed, rejected)",
+        "createdAt": "timestamp"
+      }
+    },
+    {
+      "collection": "plans",
+      "permissions": {
+        "read": "true",
+        "create": "isAdmin()",
+        "update": "isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "name": "string",
+        "minAmount": "number",
+        "expectedReturnPct": "number",
+        "durationDays": "number",
+        "isActive": "boolean"
+      }
+    },
+    {
+      "collection": "investments",
+      "permissions": {
+        "read": "isOwner() || isAdmin()",
+        "create": "isOwner()",
+        "update": "isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "userId": "string",
+        "planId": "string",
+        "amount": "number",
+        "status": "string (active, completed)",
+        "createdAt": "timestamp",
+        "returns": "number"
+      }
+    },
+    {
+      "collection": "deposits",
+      "permissions": {
+        "read": "isOwner() || isAdmin()",
+        "create": "isOwner()",
+        "update": "isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "userId": "string",
+        "usdAmount": "number",
+        "coin": "string",
+        "network": "string",
+        "txid": "string",
+        "status": "string",
+        "createdAt": "timestamp"
+      }
+    },
+    {
+      "collection": "telegram_bots",
+      "permissions": {
+        "read": "true",
+        "create": "isAdmin()",
+        "update": "isAdmin()",
+        "delete": "isAdmin()"
+      },
+      "schema": {
+        "botUsername": "string",
+        "botName": "string",
+        "token": "string",
+        "isActive": "boolean",
+        "createdAt": "timestamp"
+      }
+    }
+  ],
+  "roles": {
+    "admin": "get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'",
+    "user": "get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'user'"
+  }
+}

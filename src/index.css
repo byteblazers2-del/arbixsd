@@ -1,0 +1,498 @@
+@import "tailwindcss";
+
+:root {
+  --tgui-font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --tgui-ease-modal: cubic-bezier(0.32, 0.72, 0, 1);
+  --tgui-ease-tap: cubic-bezier(0.2, 0, 0, 1);
+  --tgui--z-index--overlay: 1000;
+  --tgui--outline: rgba(255, 255, 255, 0.16);
+  --tgui--bg_color: #0E131B;
+  --tgui--section_bg_color: #121822;
+  --tgui--text_color: #ffffff;
+}
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', var(--tgui-font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
+    background-color: #000000;
+    color: #FFFFFF;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+  }
+
+  ::selection {
+    background-color: transparent !important;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-feature-settings: "tnum" 1, "zero" 1, "ss01" 1;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Telegram UI Official Typography Stack */
+.font-telegram {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* @telegram-apps/telegram-ui Official Touch / Click Feedback Effect */
+button,
+[role="button"],
+a,
+input[type="button"],
+input[type="submit"],
+.cursor-pointer,
+.app-pressable,
+.clickable-card,
+.setting-row,
+.tg-tap-effect,
+.tg-cell,
+.tg-button,
+.liquid-tab,
+.liquid-bubble {
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  transition: opacity 0.15s ease-out !important;
+}
+
+button:active,
+[role="button"]:active,
+a:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+.cursor-pointer:active,
+.app-pressable:active,
+.clickable-card:active,
+.setting-row:active,
+.tg-tap-effect:active,
+.tg-cell:active,
+.tg-button:active,
+.liquid-tab:active,
+.liquid-bubble:active {
+  opacity: 0.65 !important;
+}
+
+/* @telegram-apps/telegram-ui Official Ripple Styles */
+.tgui-8071f6e38c77bc0b {
+  border-radius: inherit;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: background-color 0.15s ease-out;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.tgui-e156954daf886976 {
+  animation: tgui-81605f53eca39186 0.3s cubic-bezier(0.3, 0.3, 0.5, 1);
+  background: var(--tgui--outline, rgba(255, 255, 255, 0.22));
+  border-radius: 50%;
+  content: "";
+  height: 24px;
+  margin: -12px 0;
+  opacity: 0;
+  position: absolute;
+  width: 24px;
+  pointer-events: none;
+}
+
+@keyframes tgui-81605f53eca39186 {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(8);
+  }
+}
+
+/* Native App Click & Press Effects */
+.app-pressable,
+.clickable-card {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.12s cubic-bezier(0.2, 0, 0, 1), background-color 0.12s ease, opacity 0.12s ease;
+}
+
+.app-pressable:active,
+.clickable-card:active {
+  transform: scale(0.978);
+  opacity: 0.88;
+}
+
+/* Standard App Card Container matching screenshot (#1C1C1E, 20px rounded) */
+.app-card {
+  background-color: #1C1C1E;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Native Settings Row with press feedback */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 16px;
+  width: 100%;
+  transition: background-color 0.12s ease, transform 0.1s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.setting-row:active {
+  background-color: rgba(43, 47, 61, 0.75);
+  transform: scale(0.99);
+}
+
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 24s linear infinite;
+  will-change: transform;
+}
+
+/* Hide default browser scrollbars completely across platforms */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Remove default spinner arrows in number inputs across browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth custom subtle scroll for tables if needed */
+.custom-table-scroll::-webkit-scrollbar {
+  height: 0px;
+  display: none;
+}
+.custom-table-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  background-color: #000000;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* =============================================================================
+   APPLE IPHONE LIQUID GLASS NAVIGATION BAR
+   Ultra-thin hairline specular borders (0.5px), high-transparency see-through
+   liquid glass (allows underlying content to show through), ambient active blue aura,
+   and floating island pods matching user screenshot.
+   Seamlessly tuned for both Onyx (Obsidian) and Navy (Deep Blue) themes.
+   ============================================================================= */
+.liquid-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 384px;
+  margin: 0 auto;
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+/* ---------- Standalone Left Bubble (Support / 24/7 Desk) ---------- */
+.liquid-bubble {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5px;
+  background: radial-gradient(circle at 50% 18%, rgba(52, 54, 64, 0.36) 0%, rgba(16, 16, 20, 0.46) 100%);
+  backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  -webkit-backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+  padding: 0;
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.55),
+    0 4px 14px -2px rgba(0, 0, 0, 0.35),
+    inset 0 0.5px 0.5px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -0.5px 1px 0 rgba(0, 0, 0, 0.3);
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.liquid-bubble svg { 
+  width: 20px; 
+  height: 20px; 
+  color: #8E8E93; 
+  stroke: #8E8E93; 
+  z-index: 1; 
+  transition: color 0.2s ease, stroke 0.2s ease; 
+}
+.liquid-bubble .label { 
+  font-size: 10px; 
+  color: #8E8E93; 
+  z-index: 1; 
+  transition: color 0.2s ease; 
+  font-weight: 500; 
+  line-height: 1; 
+  letter-spacing: -0.2px; 
+}
+.liquid-bubble:active { transform: scale(0.93); }
+.liquid-bubble:hover svg { color: #FFFFFF; stroke: #FFFFFF; }
+.liquid-bubble:hover .label { color: #FFFFFF; }
+.liquid-bubble.active svg { color: #007AFF; stroke: #007AFF; }
+.liquid-bubble.active .label { color: #007AFF; font-weight: 600; }
+
+/* ---------- Center Pill Group (Swap / Loans / Wallet) ---------- */
+.liquid-pill {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 36px;
+  padding: 5px;
+  background: radial-gradient(circle at 50% 18%, rgba(52, 54, 64, 0.36) 0%, rgba(16, 16, 20, 0.46) 100%);
+  backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  -webkit-backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  height: 64px;
+  min-width: 195px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.55),
+    0 4px 14px -2px rgba(0, 0, 0, 0.35),
+    inset 0 0.5px 0.5px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -0.5px 1px 0 rgba(0, 0, 0, 0.3);
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.liquid-tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  height: 54px;
+  border-radius: 28px;
+  cursor: pointer;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  color: #8E8E93;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), color 0.2s ease;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.liquid-tab svg { 
+  width: 20px; 
+  height: 20px; 
+  color: #8E8E93; 
+  stroke: #8E8E93; 
+  transition: color 0.2s ease, stroke 0.2s ease, fill 0.2s ease; 
+}
+.liquid-tab .label { 
+  font-size: 10px; 
+  color: #8E8E93; 
+  transition: color 0.2s ease, font-weight 0.2s ease; 
+  font-weight: 500; 
+  line-height: 1; 
+  letter-spacing: -0.2px; 
+}
+.liquid-tab:active { transform: scale(0.93); }
+.liquid-tab:hover svg { color: #D1D1D6; }
+.liquid-tab:hover .label { color: #D1D1D6; }
+
+.liquid-tab.active { color: #007AFF; }
+.liquid-tab.active svg { 
+  color: #007AFF; 
+  stroke: #007AFF; 
+  filter: drop-shadow(0 2px 8px rgba(0, 122, 255, 0.45));
+}
+.liquid-tab.active .label { 
+  color: #007AFF; 
+  font-weight: 700;
+}
+
+/* Inset Capsule Pod Active Indicator matching "Store" pod in user screenshot */
+.liquid-indicator {
+  position: absolute;
+  inset: 1px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(10, 12, 18, 0.45) 0%, rgba(18, 20, 28, 0.58) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 0.5px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 
+    inset 0 0.5px 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 8px 0 rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Ambient liquid blue aura glowing from the top of the active capsule */
+.liquid-indicator::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 26px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 122, 255, 0.55) 0%, rgba(0, 122, 255, 0.15) 50%, transparent 80%);
+  pointer-events: none;
+}
+
+/* ---------- Standalone Right Bubble (Profile Avatar Edge-to-Edge) ---------- */
+.liquid-avatar-bubble {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 18%, rgba(52, 54, 64, 0.36) 0%, rgba(16, 16, 20, 0.46) 100%);
+  backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  -webkit-backdrop-filter: blur(13px) saturate(185%) contrast(102%);
+  cursor: pointer;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), border-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+  padding: 0;
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.55),
+    0 4px 14px -2px rgba(0, 0, 0, 0.35),
+    inset 0 0.5px 0.5px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -0.5px 1px 0 rgba(0, 0, 0, 0.3);
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+}
+
+.liquid-avatar-bubble:active { transform: scale(0.93); }
+
+.liquid-avatar-bubble.active {
+  border-color: rgba(0, 122, 255, 0.65);
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.6),
+    0 0 16px 2px rgba(0, 122, 255, 0.38),
+    inset 0 0.5px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* =============================================================================
+   NAVY THEME ADAPTATION (Deep Oceanic Sapphire Glass)
+   ============================================================================= */
+body.theme-navy .liquid-bubble,
+body.theme-navy .liquid-pill,
+body.theme-navy .liquid-avatar-bubble,
+html[data-theme="navy"] body .liquid-bubble,
+html[data-theme="navy"] body .liquid-pill,
+html[data-theme="navy"] body .liquid-avatar-bubble {
+  background: radial-gradient(circle at 50% 18%, rgba(32, 50, 75, 0.38) 0%, rgba(14, 24, 38, 0.48) 100%) !important;
+  backdrop-filter: blur(13px) saturate(185%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(13px) saturate(185%) contrast(102%) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.6),
+    0 4px 14px -2px rgba(0, 0, 0, 0.35),
+    inset 0 0.5px 0.5px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -0.5px 1px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+body.theme-navy .liquid-indicator,
+html[data-theme="navy"] body .liquid-indicator {
+  background: linear-gradient(180deg, rgba(10, 22, 38, 0.48) 0%, rgba(16, 30, 50, 0.6) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 
+    inset 0 0.5px 1px 0 rgba(255, 255, 255, 0.22),
+    0 2px 8px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+body.theme-navy .liquid-avatar-bubble.active,
+html[data-theme="navy"] body .liquid-avatar-bubble.active {
+  border-color: rgba(0, 122, 255, 0.7) !important;
+  box-shadow: 
+    0 16px 36px -6px rgba(0, 0, 0, 0.6),
+    0 0 16px 2px rgba(0, 122, 255, 0.4),
+    inset 0 0.5px 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+

@@ -1,0 +1,199 @@
+/* ========================================================================= */
+/* ONYX DARK THEME (    ‌  iOS)                       */
+/*        (‌ #111114  ‌ #1C1C20) */
+/*       (body.theme-onyx)  ‌    ‌    */
+/* ========================================================================= */
+
+/* Lightweight Theme Transition ONLY on Root Canvas Elements, preventing main-thread layout thrashing during navigation */
+body, 
+header.sticky {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ========================================================================= */
+/* ONYX THEME ONLY (   )                                          */
+/* ========================================================================= */
+
+/* 1. Canvas / App Background (#111114 - Matte Obsidian from image) */
+body.theme-onyx,
+html[data-theme="onyx"] body,
+body.theme-onyx #root,
+body.theme-onyx .min-h-screen,
+body.theme-onyx .bg-\[\#0F1721\],
+body.theme-onyx .bg-\[\#0A0E14\],
+body.theme-onyx .bg-\[\#0E131B\],
+body.theme-onyx .bg-\[\#0C0C0E\],
+body.theme-onyx .bg-\[\#0D121B\],
+body.theme-onyx .bg-\[\#0A0B0E\],
+body.theme-onyx .bg-\[\#08080A\] {
+  background-color: #111114 !important;
+  color: #FFFFFF !important;
+}
+
+/* 2. Top Header & App Bar */
+body.theme-onyx header.sticky,
+body.theme-onyx .bg-\[\#0E131B\]\/95,
+body.theme-onyx .bg-\[\#121824\],
+body.theme-onyx .bg-\[\#10151F\],
+body.theme-onyx .bg-\[\#141A24\] {
+  background-color: rgba(17, 17, 20, 0.94) !important;
+  border-bottom: 0.85px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 3. Cards with Exact #1C1C20 and Smooth Rounded Corners (No Outer Border) */
+body.theme-onyx .bg-\[\#18222D\],
+body.theme-onyx .bg-\[\#131E2A\],
+body.theme-onyx .bg-\[\#1A2635\],
+body.theme-onyx .bg-\[\#1D2B3D\],
+body.theme-onyx .bg-\[\#1C2A38\],
+body.theme-onyx .bg-\[\#1A2332\],
+body.theme-onyx .bg-\[\#111922\],
+body.theme-onyx .bg-\[\#151F2B\],
+body.theme-onyx .bg-\[\#16202C\],
+body.theme-onyx .bg-\[\#101620\],
+body.theme-onyx .bg-\[\#121822\],
+body.theme-onyx .bg-\[\#141B26\],
+body.theme-onyx .bg-\[\#151D28\],
+body.theme-onyx .bg-\[\#17202C\],
+body.theme-onyx .bg-\[\#181921\],
+body.theme-onyx .bg-\[\#101622\],
+body.theme-onyx .bg-\[\#121721\],
+body.theme-onyx .bg-\[\#15222E\],
+body.theme-onyx .bg-\[\#121924\],
+body.theme-onyx .bg-\[\#1C2634\],
+body.theme-onyx .bg-\[\#18181C\],
+body.theme-onyx .bg-\[\#121318\],
+body.theme-onyx .clickable-card,
+body.theme-onyx .app-card {
+  background-color: #1C1C20 !important;
+  border: none !important;
+  border-radius: 20px !important;
+  box-shadow: none !important;
+}
+
+/* 4. Secondary Nested Elements, Input Fields & Search Bars (#16161A + Rounded iOS Border) */
+body.theme-onyx .bg-\[\#0B0F17\],
+body.theme-onyx .bg-\[\#0A0E14\],
+body.theme-onyx .bg-\[\#0D151D\],
+body.theme-onyx .bg-\[\#0C0D11\],
+body.theme-onyx .bg-\[\#161D2A\],
+body.theme-onyx .bg-\[\#17202C\],
+body.theme-onyx .bg-\[\#141A24\],
+body.theme-onyx input,
+body.theme-onyx textarea,
+body.theme-onyx select {
+  background-color: #16161A !important;
+  border: 0.85px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 16px !important;
+}
+
+/* 5. Buttons, Pills & Badges with Rounded Shape (Only in Onyx Theme) */
+body.theme-onyx button:not(.btn-clean):not(.liquid-tab):not(.border-0),
+body.theme-onyx [role="button"]:not(.liquid-tab),
+body.theme-onyx .setting-row,
+body.theme-onyx .token-pill {
+  border-radius: 16px;
+}
+
+/* 6. Modals, Bottom Sheets & Popups */
+body.theme-onyx .bg-\[\#121721\],
+body.theme-onyx .bg-\[\#101622\],
+body.theme-onyx .bg-\[\#111217\] {
+  background-color: #151518 !important;
+  border: 0.85px solid rgba(255, 255, 255, 0.14) !important;
+}
+
+/* 7. Hover and Active Feedback */
+body.theme-onyx .hover\:bg-\[\#151D2A\]:hover,
+body.theme-onyx .hover\:bg-\[\#161D2A\]:hover,
+body.theme-onyx .hover\:bg-\[\#1C2637\]:hover,
+body.theme-onyx .hover\:bg-\[\#1D2837\]:hover,
+body.theme-onyx .hover\:bg-\[\#192332\]:hover {
+  background-color: #24242A !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* 8. Bottom Navigation Dock managed in index.css for both Onyx & Navy */
+
+/* 9. Official Telegram UI TabsList Styling (Clean, Borderless, Shorter Indicator) */
+[role="tablist"].tgui-89d3925598b8fd68 {
+  border-radius: 0 !important;
+  padding: 0 !important;
+  height: 32px !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[role="tab"].tgui-96892ceed80c1bf3 {
+  border-radius: 0 !important;
+  color: #7D8B9B !important;
+  font-weight: 600 !important;
+  font-size: 12.5px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  background: transparent !important;
+  transition: color 0.15s ease !important;
+}
+
+[role="tab"].tgui-44ea091aea23df33,
+[role="tab"][aria-selected="true"] {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.tgui-8e986e14448c29e6 {
+  background: #2EA5FF !important;
+  height: 2px !important;
+  border-radius: 2px !important;
+  bottom: 0 !important;
+  scale: 0.6 1 !important; /* Shorter, centered, sleek blue indicator */
+}
+
+body.theme-onyx [role="tablist"].tgui-89d3925598b8fd68 {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+body.theme-onyx [role="tab"].tgui-44ea091aea23df33,
+body.theme-onyx [role="tab"][aria-selected="true"] {
+  color: #FFFFFF !important;
+}
+
+body.theme-onyx .tgui-8e986e14448c29e6 {
+  background: #2EA5FF !important;
+  height: 2px !important;
+  scale: 0.6 1 !important;
+}
+
+/* 10. Onyx Theme Modals & Bottom Sheets (Full Pitch Black/Dark Slate, No Deep Blue) */
+body.theme-onyx .bg-\[\#121922\],
+body.theme-onyx .bg-\[\#0F1721\],
+body.theme-onyx .bg-\[\#141C26\],
+body.theme-onyx .bg-\[\#141E28\],
+body.theme-onyx .bg-\[\#0A0E17\] {
+  background-color: #16161A !important;
+}
+
+body.theme-onyx .bg-\[\#18222D\],
+body.theme-onyx .bg-\[\#182330\],
+body.theme-onyx .bg-\[\#151F2B\],
+body.theme-onyx .bg-\[\#1C2836\]\/50,
+body.theme-onyx .bg-\[\#1C2836\]\/60,
+body.theme-onyx .bg-\[\#223142\] {
+  background-color: #1E1E24 !important;
+}
+
+body.theme-onyx .border-\[\#1C2836\]\/60,
+body.theme-onyx .border-\[\#233242\],
+body.theme-onyx .border-\[\#1C2735\]\/65,
+body.theme-onyx .border-\[\#222E3C\]\/60,
+body.theme-onyx .border-\[\#182330\] {
+  border-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Thin White Dividers for Lists across Wallet and Modals */
+body.theme-onyx .divide-y > * + *,
+.divide-y.divide-white\/\[0\.06\] > * + * {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}

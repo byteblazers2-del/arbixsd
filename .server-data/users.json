@@ -1,0 +1,93 @@
+[
+  {
+    "id": "guest_user",
+    "cryptoBalances": {
+      "USDT": 25.25,
+      "TON": 0,
+      "BTC": 0,
+      "ETH": 0
+    },
+    "balance": 25.25,
+    "role": "user",
+    "phoneNumber": "+1 (917) 555-0198",
+    "language": "en",
+    "telegramUsername": "guest_trader",
+    "createdAt": 1791127253785,
+    "personalDataSubmitted": true,
+    "telegramId": 84920412,
+    "phoneVerified": true,
+    "preferredLanguage": "en",
+    "phoneVerifiedAt": "2026-10-03T17:41:44.065Z",
+    "firstName": "Guest Trader",
+    "bonusBalance": 5
+  },
+  {
+    "id": "tg_6011395996",
+    "firstName": "A...",
+    "role": "user",
+    "telegramUsername": "xpubj",
+    "lastLogin": 1788354520000,
+    "photoUrl": "https://t.me/i/userpic/320/8jU3Z71P1d1ChOfWtk_HK7cGx1N5KDQnzTy-KIfKcYU167ss4U5I4boQDy_SexUv.svg",
+    "sourceBotUsername": "CryptoArbitrageBot",
+    "phoneVerifiedAt": 1789309115793,
+    "phoneVerified": true,
+    "bonusBalance": 5,
+    "isFrozen": false,
+    "phoneNumber": "+989961333186",
+    "preferredLanguage": "en",
+    "cryptoBalances": {
+      "USDT": 2.2,
+      "TON": 0.1252
+    },
+    "createdAt": 1788437296628,
+    "referralCode": "ref_6011395996",
+    "telegramId": 6011395996,
+    "balance": 2.2,
+    "language": "en",
+    "sourceBotId": null
+  },
+  {
+    "id": "tg_5951882585",
+    "preferredLanguage": "zh",
+    "role": "admin",
+    "bonusBalance": 5,
+    "sourceBotUsername": "arbixsbot",
+    "referredBy": "ref_5951882585",
+    "referralsCount": 1,
+    "telegramUsername": "ai_zke",
+    "telegramId": 5951882585,
+    "isFrozen": false,
+    "createdAt": 1788356651323,
+    "sourceBotId": "8331014814",
+    "lastName": "Gray",
+    "lastLogin": 1788356651323,
+    "balance": 2,
+    "language": "zh",
+    "referralCode": "ref_5951882585",
+    "firstName": "Liam"
+  },
+  {
+    "id": "tg_7432974430",
+    "balance": 0,
+    "referralCode": "ref_7432974430",
+    "phoneVerifiedAt": 1790527689696,
+    "telegramId": 7432974430,
+    "sourceBotId": null,
+    "phoneVerified": true,
+    "lastLogin": 1788354636234,
+    "photoUrl": "https://t.me/i/userpic/320/uotMWNgUnfoJXngVkos1-pPWxH9CVM6r9WDpen0K8M8FVFcLTz4r-ul-9FWQbzKM.svg",
+    "firstName": "A man",
+    "role": "user",
+    "referredBy": "ref_5951882585",
+    "cryptoBalances": {
+      "TON": 0.00781
+    },
+    "sourceBotUsername": "CryptoArbitrageBot",
+    "preferredLanguage": "en",
+    "phoneNumber": "989058427013",
+    "language": "en",
+    "telegramUsername": "Oeodox",
+    "createdAt": 1788353660329,
+    "bonusBalance": 5
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "createdAt": 1788354660553,
+    "id": "8331014814",
+    "updatedAt": 1788354660553,
+    "webhookUrl": "https://crypto-arbitrage-mini-app.ai.studio/api/telegram-webhook/8331014814:AAHE0m_Q3ttv3PBU-j4ymcALHBevh-77dF0",
+    "commandsSet": true,
+    "botId": 8331014814,
+    "botUsername": "arbixsbot",
+    "isActive": true,
+    "webhookStatus": "polling",
+    "pollingActive": true,
+    "token": "8331014814:AAHE0m_Q3ttv3PBU-j4ymcALHBevh-77dF0",
+    "isPrimary": true,
+    "menuButtonSet": true,
+    "botName": "arbix"
+  }
+]

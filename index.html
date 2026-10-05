@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" type="image/jpeg" href="/arbix-logo.jpg" />
+    <title>Arbix</title>
+    <meta name="description" content="Arbix - Telegram Mini App for DeFi liquidity vaults, automated market making fee share, and multi-chain crypto yield protocols." />
+    <meta name="theme-color" content="#0F1721" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+      // Initialize Telegram WebApp Header and Colors immediately
+      try {
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.ready();
+          window.Telegram.WebApp.expand();
+          if (window.Telegram.WebApp.setHeaderColor) {
+            window.Telegram.WebApp.setHeaderColor('#0F1721');
+          }
+          if (window.Telegram.WebApp.setBackgroundColor) {
+            window.Telegram.WebApp.setBackgroundColor('#0F1721');
+          }
+          if (window.Telegram.WebApp.setBottomBarColor) {
+            window.Telegram.WebApp.setBottomBarColor('#0F1721');
+          }
+          // Polyfill requestContact for WebApp version < 6.9 / browser preview so it doesn't crash if called
+          if (typeof window.Telegram.WebApp.isVersionAtLeast === 'function' && !window.Telegram.WebApp.isVersionAtLeast('6.9')) {
+            window.Telegram.WebApp.requestContact = function(callback) {
+              if (typeof callback === 'function') {
+                callback(false, { error: 'Native contact sharing requires Telegram version 6.9 or above.' });
+              }
+            };
+          }
+        }
+      } catch (e) {}
+
+      // Defensive guard and Location/CSS prototype polyfill for cross-origin iframe access
+      (function() {
+        try {
+          var props = ['origin', 'href', 'search', 'hash', 'hostname', 'pathname', 'port', 'protocol'];
+          props.forEach(function(prop) {
+            try {
+              var desc = Object.getOwnPropertyDescriptor(Location.prototype, prop);
+              if (desc && desc.get) {
+                var origGet = desc.get;
+                Object.defineProperty(Location.prototype, prop, {
+                  get: function() {
+                    try {
+                      return origGet.call(this);
+                    } catch (err) {
+                      try {
+                        return window.location[prop] || '';
+                      } catch (e2) {
+                        return '';
+                      }
+                    }
+                  },
+                  configurable: true
+                });
+              }
+            } catch (e) {}
+          });
+        } catch (e) {}
+
+        // Defensive guard for remote cssRules access in iframes
+        try {
+          if (typeof CSSStyleSheet !== 'undefined' && CSSStyleSheet.prototype) {
+            var cssDesc = Object.getOwnPropertyDescriptor(CSSStyleSheet.prototype, 'cssRules');
+            if (cssDesc && cssDesc.get) {
+              var origCssRules = cssDesc.get;
+              Object.defineProperty(CSSStyleSheet.prototype, 'cssRules', {
+                get: function() {
+                  try {
+                    return origCssRules.call(this);
+                  } catch (e) {
+                    return [];
+                  }
+                },
+                configurable: true
+              });
+            }
+          }
+        } catch (e) {}
+
+        window.addEventListener('error', function(e) {
+          if (e && e.message && (
+            e.message.indexOf('cross-origin frame') !== -1 || 
+            e.message.indexOf('Location') !== -1 ||
+            e.message.indexOf('cssRules') !== -1
+          )) {
+            if (e.preventDefault) e.preventDefault();
+            if (e.stopPropagation) e.stopPropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(e) {
+          if (e && e.reason && (
+            String(e.reason).indexOf('cross-origin frame') !== -1 || 
+            String(e.reason).indexOf('Location') !== -1 ||
+            String(e.reason).indexOf('cssRules') !== -1
+          )) {
+            if (e.preventDefault) e.preventDefault();
+          }
+        });
+      })();
+    </script>
+  </head>
+  <body class="bg-[#0F1721] text-white antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

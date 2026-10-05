@@ -1,0 +1,8 @@
+{
+  "name": "Arbix",
+  "description": "Telegram Mini App for DeFi liquidity vaults, automated market making fee share, and multi-chain crypto yield protocols.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
